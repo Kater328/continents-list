@@ -1,14 +1,13 @@
-import { useState } from "react";
 import LanguageItem from "./LanguageItem";
+import hoc from "../ListItemHOC";
+
 function CountryItem(props) {
-  
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-    <li onClick={()=>setIsOpen(!isOpen)}>
+    <li onClick={props.changeData}>
       {props.name}
     </li>
-      {(isOpen) && 
+      {(props.isOpen) && 
         <ul>
           <LanguageItem 
             language={props.language}/>
@@ -18,4 +17,4 @@ function CountryItem(props) {
   );
 }
 
-export default CountryItem;
+export default hoc(CountryItem);

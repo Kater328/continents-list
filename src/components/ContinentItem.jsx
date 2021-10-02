@@ -1,15 +1,13 @@
-import { useState } from "react";
 import CountryItem from "./CountryItem";
+import hoc from "../ListItemHOC";
 
 function ContinentItem(props) {
-  
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-    <li onClick={()=>setIsOpen(!isOpen)}>
+    <li onClick={props.changeData}>
       {props.name}
     </li>
-      {(isOpen) &&
+      {(props.isOpen) &&
         <ul>
           {props.countries.map((country) =>
             <CountryItem
@@ -25,4 +23,4 @@ function ContinentItem(props) {
   );
 }
 
-export default ContinentItem;
+export default hoc(ContinentItem);
