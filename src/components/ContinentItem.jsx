@@ -1,13 +1,17 @@
+import React, { useContext } from "react";
+import closedContext from "../closedAllContext";
 import CountryItem from "./CountryItem";
 import hoc from "../ListItemHOC";
 
 function ContinentItem(props) {
+  const { setClosed } = useContext(closedContext);
+  const handleToggle = () => setClosed(false);
   return (
     <>
-    <li onClick={props.changeData}>
+    <li onClick={() => {handleToggle(); props.changeData();}}>
       {props.name}
     </li>
-      {(props.isOpen) &&
+      {(props.isOpen) && (!props.closed) &&
         <ul>
           {props.countries.map((country) =>
             <CountryItem
@@ -15,7 +19,6 @@ function ContinentItem(props) {
               key={country.code}
               language={country.languages}
             />
-            
           )}
         </ul>
       }
